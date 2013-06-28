@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Phone Sumy</title>
+        <meta charset="utf-8">
+        <link rel="stylesheet" type="text/css" href="css/dx.common.css" />
+        <link rel="stylesheet" type="text/css" href="css/dx.ios.default.css" />
+        <link rel="stylesheet" type="text/css" href="css/dx.android.holo-dark.css" />
+        <link rel="stylesheet" type="text/css" href="css/dx.desktop.default.css" />
+        <link rel="stylesheet" type="text/css" href="css/dx.win8.black.small.css" />
+        <script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+        <script type="text/javascript" src="js/knockout-2.2.1.js"></script>
+        <script type="text/javascript" src="js/globalize.js"></script>
+        <script type="text/javascript" src="js/dx.phonejs.js"></script>
+        <script type="text/javascript" src="js/design.js"></script>
+        <script type="text/javascript" src="js/phones.js"></script>
+    </head>
+    <body>
+        <div data-options="dxLayout : { name: 'default' } " >
+            <div data-options="dxContentPlaceholder  : { name: 'content', transition: 'slide' } "></div>
+        </div>
+        <div data-options="dxView : { name: 'home', title: 'Місто Суми', layout: 'default' } " >
+            <div data-options="dxContent : { targetPlaceholder: 'content' } " >
+                <h1>Місто Суми</h1>
+                <hr/>
+                <div class="dx-fieldset">
+                    <div class="dx-field">
+                        <div class="dx-field-label">Телефон</div>
+                        <div class="dx-field-value">
+                            <div data-bind="dxTextBox: { value: phone, placeholder: '321123' }"></div>
+                        </div>
+                    </div>
+                    <div class="dx-field">
+                        <div class="dx-field-label">Прізвище</div>
+                        <div class="dx-field-value">
+                            <div data-bind="dxTextBox: { value: name, placeholder: 'Iванов' }"></div>
+                        </div>
+                    </div>
+                    <div class="dx-field">
+                        <div class="dx-field-label">Вулиця</div>
+                        <div class="dx-field-value">
+                            <div data-bind="dxTextBox: { value: street, placeholder: 'Черепіна' }"></div>
+                        </div>
+                    </div>
+                    <div class="dx-field">
+                        <div class="dx-field-label">Будинок</div>
+                        <div class="dx-field-value">
+                            <div data-bind="dxTextBox: { value: house, placeholder: '123' }"></div>
+                        </div>
+                    </div>
+                    <div class="dx-field">
+                        <div class="dx-field-label">Квартира</div>
+                        <div class="dx-field-value">
+                            <div data-bind="dxTextBox: { value: apt, placeholder: '123' }"></div>
+                        </div>
+                    </div>
+                </div>
+                <div data-bind="dxButton: { text: 'Пошук', clickAction: search }" style="width: 99%"></div>
+                <hr/>
+                <div>
+                    <p>Телефонний довідник міста Суми та Сумського району</p>
+                    <p>&copy; Kichrum, <u>www.Kichrum.org.ua</u>, 2013 рiк</p>
+                </div>
+
+                <div data-bind="dxPopup:{visible:popupVisible, fullScreen:false}">
+                    <div data-options="dxTemplate:{name: 'title'}">
+                        <p>Зачекайте, будь-ласка</p>
+                    </div>
+                    <div data-options="dxTemplate:{name: 'content'}">
+                        <p>Відбувається ініціалізація бази даних...</p>
+                        <p>Цей процес не потребує доступу до мережі інтернет та зазвичай не займає більше декількох секунд.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div data-options="dxView : { name: 'search', layout: 'default' } " >
+            <div data-options="dxContent : { targetPlaceholder: 'content' } " >
+                <div data-bind="dxButton: { text: 'Новий пошук', clickAction: '#_back' }"></div>
+                <h2>Результати пошуку:</h2>
+
+                <div data-bind="dxList: { items: items }">
+                    <div data-options="dxTemplate : { name: 'item' } "
+                         onclick="location.href = 'tel:+380542' + $('.phone', this).text();" >
+                        <div><strong data-bind="text: $data[1]"></strong></div>
+                        <div>
+                            <span data-bind="text: $data[2]"></span>,
+                            <span data-bind="text: $data[3]"></span>
+                            <span data-bind="text: $data[4]"></span>,
+                            <span data-bind="text: $data[5]"></span> / 
+                            <span data-bind="text: $data[6]"></span>
+                        </div>
+                        <div><span class="phone" data-bind="text: $data[0]"></span></div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+
+    </body>
+</html>

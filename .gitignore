@@ -1,3 +1,5 @@
-/node_modules
-/server.js
-/nbproject
+node_modules
+server.js
+nbproject
+platforms/android/bin/
+platforms/android/gen/

@@ -8,6 +8,13 @@
         <link rel="stylesheet" type="text/css" href="css/dx.android.holo-dark.css" />
         <link rel="stylesheet" type="text/css" href="css/dx.desktop.default.css" />
         <link rel="stylesheet" type="text/css" href="css/dx.win8.black.small.css" />
+        <style>
+			/* Remove tap highlight */
+			input{
+			   	-webkit-user-modify: read-write-plaintext-only;
+				-webkit-tap-highlight-color:#3072af;
+			}
+        </style>
         <script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
         <script type="text/javascript" src="js/knockout-2.2.1.js"></script>
         <script type="text/javascript" src="js/globalize.js"></script>
@@ -61,7 +68,6 @@
                     <p>Телефонний довідник міста Суми та Сумського району</p>
                     <p>&copy; Kichrum, <u>www.Kichrum.org.ua</u>, 2013 рiк</p>
                 </div>
-
                 <div data-bind="dxPopup:{visible:popupVisible, fullScreen:false}">
                     <div data-options="dxTemplate:{name: 'title'}">
                         <p>Зачекайте, будь-ласка</p>
@@ -71,15 +77,13 @@
                         <p>Цей процес не потребує доступу до мережі інтернет та зазвичай не займає більше декількох секунд.</p>
                     </div>
                 </div>
-
             </div>
         </div>
         <div data-options="dxView : { name: 'search', layout: 'default' } " >
             <div data-options="dxContent : { targetPlaceholder: 'content' } " >
                 <div data-bind="dxButton: { text: 'Новий пошук', clickAction: '#_back' }"></div>
                 <h2>Результати пошуку:</h2>
-
-                <div data-bind="dxList: { items: items }">
+                <div data-bind="dxList: { items: items, noDataText: 'Нiчого не знайдено' }">
                     <div data-options="dxTemplate : { name: 'item' } "
                          onclick="location.href = 'tel:+380542' + $('.phone', this).text();" >
                         <div><strong data-bind="text: $data[1]"></strong></div>
@@ -92,7 +96,6 @@
                         </div>
                         <div><span class="phone" data-bind="text: $data[0]"></span></div>
                     </div>
-
                 </div>
             </div>
         </div>
